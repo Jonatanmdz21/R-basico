@@ -80,4 +80,10 @@ suma= function(a,b){
 
 suma(2,3)
 
+basicas= function(i,m){
+  print (paste(sprintf("la suma de %i+%i es: ", i, m), i+m))
+  print (paste(sprintf("la resta de %i-%i es: ", i, m), i-m))
+  print (paste(sprintf("la multiplicacion de %ix%i es: ", i, m), i*m))
+  print (paste(sprintf("la divicion de %i/%i es: ", i, m), i/m))
+}
 
