@@ -5,8 +5,7 @@ Primeros pasos en la estaistica con R
 
 
 
-##Temario: 
-
+Temario: 
 
 
 
