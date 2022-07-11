@@ -42,19 +42,6 @@ data%>%summarise(n=n(),media= mean(var, na.rm = T),DS=sd(var, na.rm = T),
 trimes1%>%group_by(Status)%>% summarise(n=n(),media= mean(perimetro_cefalico,na.rm = T)
                                         ,DS=sd(perimetro_cefalico, na.rm = T))
 
-##homocedasticidad
-
-library(car)
-
-#fligner
-
-fligner.test(y ~x,datos)
-
-#levene
-
-leveneTest(y ~ x,datos, center = "median")
-
-
 ##exportar base 
 
 library(writexl)
