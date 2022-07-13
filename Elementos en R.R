@@ -87,3 +87,4 @@ basicas= function(i,m){
   print (paste(sprintf("la divicion de %i/%i es: ", i, m), i/m))
 }
 
+basicas(5,4)

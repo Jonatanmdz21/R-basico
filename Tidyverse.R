@@ -2,8 +2,6 @@
 
 ##descarga y carga de packages
 
-install.packages("tidyverse")
-
 
 library(tidyverse)
 
@@ -93,9 +91,19 @@ str_count(america$country, "[zy]")
 
 ## TIDYR
 
-#gather 
-
-
+ame= gapminder%>% select(country, continent, year, pop)%>% filter(continent=="Americas")%>% filter(year>=2000)
 
 #spread 
+
+ameL=spread(ame, year, pop)
+
+ameL
+
+#gather 
+
+ameA= gather(ameL, "Anio", "Poblacion", 3:4)
+
+
+
+
 
