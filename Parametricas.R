@@ -15,7 +15,7 @@ fligner.test(y ~x,datos)
 leveneTest(y ~ x,datos, center = "median")
 
 
-# muestras no pareadas 
+# muestras no pareadas (tabla ancha )
 
 t.test(x = datos$grupos, y = datos$respuesta, 
        alternative = "two.sided", paired = FALSE, conf.level = 0.95) 
@@ -42,13 +42,15 @@ fligner.test(y ~x,datos)
 
 leveneTest(y ~ x,datos, center = "median")
 
-## una via 
+## una via (tabla larga)
 
 anova <- aov(datos$respuesta ~ datos$grupos)
 
-Summary (anova)
+summary (anova)
 
 # efecto
+
+library(lsr)
 
 etaSquared(anova)
 
@@ -59,22 +61,22 @@ TukeyHSD(anova)
 
 plot(TukeyHSD(anova)) 
 
-pairwise.t.test(x = datos$respuesta, g = datos$grupos, p.adjust.method = "holm",
+pairwise.t.test(x = atletas$calorias, g = atletas$deportista, p.adjust.method = "holm",
                 pool.sd = TRUE, paired = FALSE, alternative = "two.sided") 
 
 
 ## ANOVA pareada 
 
-datos <- as.matrix((datos[-1]) )
+datos <- as.matrix((base[-6]) )
 
 modelo_lm <- lm(datos ~ 1)
 
-grupos <- factor(c("grupo_A", "grupo_B", "grupo_C", "grupo_D")) 
+grupos <- factor(c("grupo_A", "grupo_B", "grupo_C", "grupo_D", "grupo_E")) 
 
 
 library(car) 
 
-anova_pareado <- Anova(modelo_lm, idata = data.frame(tienda), idesign = ~ tienda, type = "III") 
+anova_pareado <- Anova(modelo_lm, idata = data.frame(grupos), idesign = ~ grupos, type = "III") 
 
 
 summary(anova_pareado)
