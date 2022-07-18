@@ -46,7 +46,7 @@ trimes1%>%group_by(Status)%>% summarise(n=n(),media= mean(perimetro_cefalico,na.
 
 library(writexl)
 
-write_xlsx(neuroD1,"/Users/jonatanmendoza/Library/CloudStorage/OneDrive-UNIVERSIDADNACIONALAUTÓNOMADEMÉXICO/bases/NDOB.xlsx")
+write_xlsx(datacor1,"/Users/jonatanmendoza/Documents/bases/mexComNO.xlsx")
 
 
 ## nueva var condicional
