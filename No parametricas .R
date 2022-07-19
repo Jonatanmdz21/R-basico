@@ -66,37 +66,36 @@ indigenas<-c(78,79,89,79,81,83,95)
 gitanos<-c( 67, 78, 78, 79,80)          
 negros<-c(95,99,89,87,90,92)        
 otros<-c(78,80,81,78,67,70,71,73)
+
 kruskal.test(list(indigenas,gitanos,negros,otros))
 
 kruskal.test(y~x, data)
 
 # prueba post hoc
 
-posthoc.kruskal.dunn.test(list(indigenas,gitanos,negros,otros),
-                          p.adjust.method = "holm")
+posthoc.kruskal.dunn.test(list(indigenas,gitanos,negros,otros), p.adjust.method = "holm")
 
 
 #pruebas de independencia x2 
 
-#cargamos base 
+#cargamos base y limpiamos NA 
 
-library(rio)
+lesiones=lesiones%>%na.omit(race)
 
-adultos<-import("independencia.xlsx")
 
 #chi cuadrada 
 
+table(lesiones$sex, lesiones$race)
 
-chisq.test(adultos$educacion,adultos$alcohol)
 
-# fisher 
+chisq.test(lesiones$sex, lesiones$race)
 
-fisher.test(adultos$educacion,adultos$alcohol)
 
 #tabla de contingencia 
 
 
 library(gmodels)
-CrossTable(adultos$educacion,adultos$alcohol,expected = TRUE,
+
+CrossTable(lesiones$sex, lesiones$race,expected = TRUE,
            prop.r = TRUE,prop.c = TRUE,fisher = TRUE)
 
