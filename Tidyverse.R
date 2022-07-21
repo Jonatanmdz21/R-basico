@@ -12,6 +12,8 @@ library(tidyverse)
 
 arrange(gapminder, year, desc(pop)) %>% head()
 
+gap=arrange(gapminder, year, desc(pop))
+
 #cout 
 
 
@@ -22,21 +24,41 @@ gapminder %>% count(continent, sort = TRUE, name="registros")
 
 gapminder %>% filter(year == 2007) %>% head()
 
+gap=gapminder %>% filter(continent %in% c("Americas","Europe" ), year>=1990)
+
+# == dato exacto 
+# != todos menos 
+# >  mayor que 
+# <  menor que 
+# >= mayor o igual 
+# <= menor o igual 
+#  %in% c("Americas" , "Europe" )
+
 america <- gapminder %>% filter(year == 2007, continent=="Americas") 
 america
 
 #group_by
 
-gapminder %>% 
-  group_by(year) %>%
+gap1 = gapminder %>% 
+  group_by(continent) %>%
   summarize(meanLifeExp = signif(mean(lifeExp), digits=4),
-            totalPop = sum(as.numeric(pop))
+            totalPop = sum(as.numeric(pop), minpop= max(pop))
   )
 
 
+ 
 #mutate 
 
-gapminder %>%  mutate(pop = pop / 1000000, gdp = gdpPercap*pop) %>% head()
+gap1=gapminder %>%  mutate(pop_pmill = pop / 1000000, gdp = gdpPercap*pop)
+
+# + suma 
+# - resta 
+# * multi
+# / div 
+# 2^3 potencia 
+# sqrt(10) raiz 
+# log() natural   log10() logaritmo base 10   logn() siendo n cualquier numero natural 
+
 
 #rename 
 

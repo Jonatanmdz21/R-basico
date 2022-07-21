@@ -1,6 +1,6 @@
 #####Elementos de R####
 
-
+hcahcja
 ###tipos de variables 
 
 x=3  #numerico
