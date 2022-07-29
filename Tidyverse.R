@@ -99,21 +99,23 @@ gapminder %>%
 
 #Genera un caden de texto con separador indicado en argumento collapse.
 
-str_c(america$country, collapse = ", ")
+str_c(gapminder$continent, collapse = ", este es: ")
 
 #  str_detect()
 # Busca la ocurrencia del patron dentro del texto: str_detect(texto, patron) 
 
-str_detect(america$country, "[zy]")
+str_detect(gapminder$country, "[zy]")
 
 # str_count()
 # Contabiliza el número de ocurrencias del patrón dentro de el texto.
 
-str_count(america$country, "[zy]")
+y=str_count(gapminder$country, "[zy]")
+
+y
 
 ## TIDYR
 
-ame= gapminder%>% select(country, continent, year, pop)%>% filter(continent=="Americas")%>% filter(year>=2000)
+ame= gapminder%>% select(country, continent, year, pop)%>% filter(continent=="Americas")%>% filter(year>=1985)
 
 #spread 
 
@@ -123,9 +125,25 @@ ameL
 
 #gather 
 
-ameA= gather(ameL, "Anio", "Poblacion", 3:4)
+ameA= gather(ameL, "Anio", "Poblacion", 3:7)
 
 
+#ggplot 2
 
+                library(ggbeeswarm)
 
+gapminder%>%filter(year>=1985)%>% filter(continent!="Oceania")%>%
+  ggplot(aes(x=continent, y=log(pop)))+
+  geom_boxplot(alpha=0)+geom_violin(cex=0.1,bw=0.5,alpha=0.2,
+                                    aes(color=continent))+
+  geom_point(size=10, shape=63, aes(y=mean(log(pop))))
+
+##scatter plot 
+
+gapminder%>%filter(year>=1985)%>% filter(continent!="Oceania")%>%
+ggplot(aes(lifeExp, log(pop), col=continent))+
+  geom_point(size=0.3)+geom_smooth(method = "lm",se=F)+
+  facet_grid(year~continent)+theme_minimal()+
+  labs(title = 'Estos son los continentes', subtitle = "Te vas a acordar de mi maldito", 
+       y="yo soy y", x='yo soy  x', color="pos estos son \n los colores")
 
