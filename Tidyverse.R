@@ -132,7 +132,7 @@ ameA= gather(ameL, "Anio", "Poblacion", 3:7)
 
                 library(ggbeeswarm)
 
-gapminder%>%filter(year>=1985)%>% filter(continent!="Oceania")%>%
+p1=gapminder%>%filter(year>=1985)%>% filter(continent!="Oceania")%>%
   ggplot(aes(x=continent, y=log(pop)))+
   geom_boxplot(alpha=0)+geom_violin(cex=0.1,bw=0.5,alpha=0.2,
                                     aes(color=continent))+
@@ -140,10 +140,23 @@ gapminder%>%filter(year>=1985)%>% filter(continent!="Oceania")%>%
 
 ##scatter plot 
 
-gapminder%>%filter(year>=1985)%>% filter(continent!="Oceania")%>%
+p2= gapminder%>%filter(year>=1985)%>% filter(continent!="Oceania")%>%
 ggplot(aes(lifeExp, log(pop), col=continent))+
   geom_point(size=0.3)+geom_smooth(method = "lm",se=F)+
   facet_grid(year~continent)+theme_minimal()+
   labs(title = 'Estos son los continentes', subtitle = "Te vas a acordar de mi maldito", 
        y="yo soy y", x='yo soy  x', color="pos estos son \n los colores")
+
+# bar plot 
+
+p3=ggplot(gapminder, aes(x=factor(year),fill=continent))+
+  geom_bar(position ="dodge" )+
+  scale_y_continuous(limits =c(0,75), breaks=seq(10,50, 5))+
+  theme_light()+labs(title = 'Años', y='Conteos', x='Año de medicion',
+                     fill='Contiente')
+library(gridExtra)
+
+grid.arrange(p2, p1, p3, ncol=2, widths=c(5.5, 2.2))
+
+
 
