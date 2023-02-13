@@ -44,7 +44,7 @@ leveneTest(y ~ x,datos, center = "median")
 
 ## una via (tabla larga)
 
-anova <- aov(datos$respuesta ~ datos$grupos)
+anova <- aov(sietes$Magnitud ~ sietes$Mes)
 
 summary (anova)
 
