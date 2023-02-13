@@ -69,6 +69,6 @@ sismo=sismo %>%filter(Mother %in%c("Healthy", "preeclampsia", "GDM"))
 
 rename(mext, IL10='IL-10')->mext
 
-
+##aqui pruevo github
 
 
