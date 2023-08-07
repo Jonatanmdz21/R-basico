@@ -1,13 +1,18 @@
-#####Elementos de R####
+#####. Elementos de R. ####
 
+## como declarar objetos 
+
+ 7 -> x
+
+x
 
 ###tipos de variables 
 
-x=3  #numerico
+x= 3 #numerico
 
 class(x)     
 
-x='abc'   #caracter
+x='Jonatan Mendoza'   #caracter
 
 class(x)
 
@@ -20,51 +25,58 @@ x="2019-12-25"  #fecha ??
 
 class(x)
 
-x= as.Date(x)
+x= as.Date(x) # cambio de clase a fecha 
 
 
 class(x)  
 
+x
 
 ## tipos de objetos 
 
 #variables 
 
-x=2
+HolaMundo=2
+
+y=2
 
 #vectores 
 
-edad= c(12,34, 16, 22)
+edad= c(12, 34, 23, 22, 45, 32)
 
 edad 
 
-nombres=c('Juan', 'Pedro', 'Maria', 'Lisa')
+nombres= c('Mario', 'Pedro','victoria', 'Maria', 'Lisa', 'Jose')
 
 nombres
 
 
 #extraccion de valor en vector 
 
-edad[2]
+edad[4]
 
-nombres[1:3]
+nombres[2:3]
 
-nombres[-2]
+SnVk=nombres[-3]
+
+SnVk
 
 
 ##matrices 
 
-mimatriz <- matrix(data=1:20, nrow=4, ncol=5, byrow=FALSE)
+mymatrix <- matrix(data=1:20, nrow=4,
+                   ncol=5, byrow=T)
 
-mimatriz[2, 3]
+mymatrix[4, 1]
 
 
 ##arreglos 
 
 miarray <- array(data=letters[1:24], dim=c(3, 4, 2))
 
+miarray
 
-miarray[1, 3, 2]
+miarray[1, 4, 1]
 
 
 
@@ -74,11 +86,11 @@ miarray[1, 3, 2]
 
 ##funciones 
 
-suma= function(a,b){
-  a+b
+suma= function(a,b,c){
+  a+b+c
 }
 
-suma(2,3)
+suma(13,33,5)
 
 basicas= function(i,m){
   print (paste(sprintf("la suma de %i + %i es: ", i, m), i+m))
@@ -87,5 +99,6 @@ basicas= function(i,m){
   print (paste(sprintf("la divicion de %i/%i es: ", i, m), i/m))
 }
 
-basicas(5,4)
+basicas(10,2)
 
+rm(mymatrixAndrea)
