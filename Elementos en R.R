@@ -1,7 +1,14 @@
 #####Elementos de R####
 
 
+#declarando variables 
+
+a=1
+a<-1
+1->a
+
 ###tipos de variables 
+
 
 x=3  #numerico
 
@@ -55,6 +62,7 @@ nombres[-2]
 ##matrices 
 
 mimatriz <- matrix(data=1:20, nrow=4, ncol=5, byrow=FALSE)
+mimatriz
 
 mimatriz[2, 3]
 

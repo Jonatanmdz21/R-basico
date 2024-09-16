@@ -2,9 +2,13 @@
 
 ##descarga y carga de packages
 
-
+library(gapminder)
 library(tidyverse)
 
+gapminder=gapminder
+
+str(gapminder)
+summary(gapminder)
 
 ###DPLYR
 
@@ -22,9 +26,10 @@ gapminder %>% count(continent, sort = TRUE, name="registros")
 
 #filter 
 
-gapminder %>% filter(year == 2007) %>% head()
+NoAmericas=gapminder %>% filter(continent != "Americas") #%>% head(10)
 
-gap=gapminder %>% filter(continent %in% c("Americas","Europe" ), year>=1990)
+gap=gapminder %>% filter(continent %in% c("Americas","Europe","Asia" ),
+                         year>=1980&year<=2000)
 
 # == dato exacto 
 # != todos menos 
@@ -39,17 +44,27 @@ america
 
 #group_by
 
+gap2002=gapminder%>%filter(year==1952)%>%
+  group_by(continent)%>%summarize(meanLifeExp=mean(lifeExp), 
+                                                   maximo=max(lifeExp),numero=n(),
+                                                   desvStr=sd(lifeExp), 
+                                  meangdpPercap=mean(gdpPercap), 
+                                  maximo=max(gdpPercap),numero=n(),
+                                  desvStr=sd(gdpPercap))
+
+
+
 gap1 = gapminder %>% 
   group_by(continent) %>%
   summarize(meanLifeExp = signif(mean(lifeExp), digits=4),
-            totalPop = sum(as.numeric(pop), minpop= max(pop))
+            totalPop = sum(as.numeric(pop), minpop= min(pop))
   )
 
 
  
 #mutate 
 
-gap1=gapminder %>%  mutate(pop_pmill = pop / 1000000, gdp = gdpPercap*pop)
+gap2=gapminder %>%  mutate(pop_pmill = pop / 1000000, gdp = log10(gdpPercap*pop))
 
 # + suma 
 # - resta 
